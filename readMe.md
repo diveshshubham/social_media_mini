@@ -27,7 +27,9 @@
 - Get postman collection 👉 👉 👉 https://www.getpostman.com/collections/b3c2229721f0bacafffd 👈 👈 👈
 - Replace http://localhost:8086 with https://mini-social-media-shubham.herokuapp.com/
 
-## Paths
+## Paths Test it using POSTMAN
+
+Home page - https://mini-social-media-shubham.herokuapp.com/
 
 ### user's path
 
