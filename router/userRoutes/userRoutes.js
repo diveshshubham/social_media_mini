@@ -6,6 +6,7 @@ const contentModel = require('../../models/index').userContentModel;
 const mediaModel = require('../../models/index').userMediaModel;
 
 let routes = (app) => {
+
     //to register user
     router.post("/user/register",
         validateApiKey,
@@ -13,6 +14,7 @@ let routes = (app) => {
             userController.register(req, res)
         }
     );
+
     //to login user
     router.post("/user/login",
         validateApiKey,
@@ -20,6 +22,7 @@ let routes = (app) => {
             userController.login(req, res)
         }
     );
+
     //user updoad user's personal media
     router.post("/user/uploadMedia",
         validateApiKey,
@@ -28,6 +31,7 @@ let routes = (app) => {
             userController.uploadMedia(req, res, mediaModel, contentModel)
         }
     );
+
     //user udates media
     router.put("/user/updateMedia/:mediaId",
         validateApiKey,
@@ -36,6 +40,7 @@ let routes = (app) => {
             userController.updateMedia(req, res, mediaModel, contentModel)
         }
     );
+
     // user to update his own profile
     router.put("/user/updateProfile",
         validateApiKey,

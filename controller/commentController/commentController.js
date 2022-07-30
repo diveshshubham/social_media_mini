@@ -1,9 +1,9 @@
 
 module.exports = {
-    //user comments on content
-    addComment: async (req, res, commentModel, contentModel) => {
-        try {
 
+    //user comments on content
+    addComment: async (req, res, commentModel) => {
+        try {
             const userId = req.user._id
             const contentId = req.params.contentId;
             const isVisible = req.body.isVisible;
@@ -29,9 +29,10 @@ module.exports = {
         }
         catch (err) {
             console.log(err)
-            res.status(500).send({ err })
+            res.status(500).send({ msg: "server error" })
         }
     },
+
     //user gets comment by contentId
     getComments: async (req, res, commentModel) => {
         try {
@@ -53,7 +54,7 @@ module.exports = {
                     })
                     .sort({ "updatedAt": -1 })
 
-                res.status(200).send({ data: comments , totlCount})
+                res.status(200).send({ data: comments, totlCount })
             } else {
                 res.status(400).send({ msg: "invalid params" })
             }
@@ -63,6 +64,7 @@ module.exports = {
             res.status(500).send({ msg: "something went wrong" })
         }
     },
+
     //updating comment by commentor and content user as well as commenter can hide the comment
     updateComment: async (req, res, commentModel, contentModel) => {
         try {
@@ -88,7 +90,6 @@ module.exports = {
             //content owner case he can delete comment 
             if (userId == contentOwner) {
                 updObj = {
-                    // comment: comment,
                     isVisible: isVisible,
                     updatedAt: new Date(),
                 }
@@ -105,8 +106,8 @@ module.exports = {
                 await commentModel.updateOne(condition, { $set: updObj })
                 res.status(200).send({ data: "comment successfully udated" })
             }
-             // commentor with content owner case he can delete as well as edit his own comment
-             else if (userId == commentAccessCheck && userId == contentOwner) {
+            // commentor with content owner case he can delete as well as edit his own comment
+            else if (userId == commentAccessCheck && userId == contentOwner) {
                 updObj = {
                     comment: comment,
                     isVisible: isVisible,

@@ -19,7 +19,7 @@ module.exports = {
                     res.status(409).send({ msg: "already liked" })
                 }
                 else {
-                    res.status(500).send({ msg:"server error" })
+                    res.status(500).send({ msg: "server error" })
                 }
             }
             else {
@@ -69,7 +69,7 @@ module.exports = {
             res.status(500).send({ msg: "something went wrong" })
         }
     },
-    
+
     //unliking the like
     unlikeController: async (req, res, likeModel) => {
         try {

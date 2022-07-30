@@ -4,7 +4,6 @@ module.exports = {
     //user saves content
     addContent: async (req, res, contentModel) => {
         try {
-
             const userId = req.user._id
             const content = req.body.content;
             const contentType = req.body.contentType;
@@ -36,6 +35,7 @@ module.exports = {
                     isVisibleToAll: isVisibleToAll,
                     isVisibleToFriend: isVisibleToFriend
                 })
+
                 userContentObj = await userContentObj.save()
                 res.status(200).send({ data: userContentObj })
             } else {
@@ -47,6 +47,7 @@ module.exports = {
             res.status(500).send({ msg: "server error" })
         }
     },
+
     //user edits content
     updateContent: async (req, res, contentModel) => {
         try {
@@ -71,11 +72,11 @@ module.exports = {
                     isDeleted: isDeleted,
                     updatedAt: new Date()
                 }
-
                 updObj = await contentModel.updateOne(condition, { $set: updObj })
                 updObj = await contentModel.findOne(condition)
                 res.status(200).send({ data: updObj })
-            } else {
+            }
+            else {
                 res.status(400).send({ msg: "invalid params" })
             }
         }
@@ -84,6 +85,7 @@ module.exports = {
             res.status(500).send({ msg: "something went wrong" })
         }
     },
+
     //user gets all his undeleted content
     getContent: async (req, res, contentModel) => {
         try {
@@ -108,11 +110,13 @@ module.exports = {
                 .sort({ "updatedAt": -1 })
 
             res.status(200).send({ data: contensUser, totalCount })
-        } catch (err) {
+        }
+        catch (err) {
             console.log(err)
             res.status(500).send({ msg: "something went wrong" })
         }
     },
+
     //user gets all content including 
     getAllContent: async (req, res, contentModel, userModel, friendModel) => {
         try {
@@ -148,7 +152,7 @@ module.exports = {
             }
 
             let totalCount = await contentModel
-            .find(condition)
+                .find(condition)
             totalCount = totalCount.length
 
             let content = await contentModel
@@ -158,12 +162,14 @@ module.exports = {
                 .sort({ "updatedAt": -1 })
                 .populate(populate)
 
-            res.status(200).send({ data: content,totalCount })
-        } catch (err) {
+            res.status(200).send({ data: content, totalCount })
+        }
+        catch (err) {
             console.log(err)
             res.status(500).send({ msg: "something went wrong" })
         }
     },
+    
     //user gets content by id
     getContentbyId: async (req, res, contentModel) => {
         try {
@@ -171,7 +177,8 @@ module.exports = {
             let condition = { _id: contentId, isDeleted: false }
             let content = await contentModel.findOne(condition)
             res.status(200).send({ data: content })
-        } catch (err) {
+        }
+        catch (err) {
             console.log(err)
             res.status(500).send({ msg: "something went wrong" })
         }

@@ -5,10 +5,10 @@ module.exports = {
     //send friend req by user
     sendFriendRequest: async (req, res, friendModel) => {
         try {
-
             const userId = req.user._id
             const friendId = req.params.friendId;
             const requestSentAt = new Date();
+
             let checkCondition = {
                 userId: userId,
                 friendId: friendId,
@@ -19,6 +19,7 @@ module.exports = {
             }
 
             let reqCheck = await friendModel.findOne(checkCondition)
+
             if (reqCheck) {
                 checkCondition = {
                     userId: userId,
@@ -53,6 +54,7 @@ module.exports = {
             res.status(500).send({ msg: "server error" })
         }
     },
+
     //get friend request
     getFriendRequests: async (req, res, friendModel) => {
         try {
@@ -118,7 +120,8 @@ module.exports = {
             res.status(500).send({ msg: "server error" })
         }
     },
-    //accept friend request
+
+    //accept or reject friend request
     friendRequestAction: async (req, res, friendModel, userModel) => {
         try {
             const userId = req.user._id;
@@ -186,13 +189,13 @@ module.exports = {
             } else {
                 res.status(500).send({ msg: "something went wrong" })
             }
-
         }
         catch (err) {
             console.log(err)
             res.status(500).send({ msg: "something went wrong" })
         }
     },
+
     //getuser friend suggestion
     friendSuggestion: async (req, res, userModel) => {
         try {
@@ -209,6 +212,7 @@ module.exports = {
             }
 
             let condition = { _id: userId }
+
             if (userId) {
                 let userSugg = await userModel.findOne(condition)
                 let userLocationX = userSugg.userLocationX;
@@ -226,7 +230,13 @@ module.exports = {
                 };
                 userSugg = await userModel.find(condition)
                 let totalCount = userSugg.length
-                userSugg = await userModel.find(condition).skip(offset).limit(limt).sort({ "updatedAt": -1 })
+
+                userSugg = await userModel
+                    .find(condition)
+                    .skip(offset)
+                    .limit(limt)
+                    .sort({ "updatedAt": -1 })
+
                 res.status(200).send({ data: userSugg, totalCount })
             } else {
                 res.status(400).send({ msg: "invalid req param" })
@@ -260,7 +270,11 @@ module.exports = {
 
             let userSearched = await userModel.find(condition)
             let totalCount = userSearched.length
-            userSearched = await userModel.find(condition).skip(offset).limit(limt).sort({ "userName": 1 })
+
+            userSearched = await userModel.find(condition)
+                .skip(offset)
+                .limit(limt)
+                .sort({ "userName": 1 })
 
             res.status(200).send({ data: userSearched, totalCount })
         }
@@ -286,14 +300,13 @@ module.exports = {
                 requestCheck = await friendModel.updateOne(condition, { $set: updCancelObj })
                 res.status(200).send({ msg: "successfully canceled" })
             }
-
-
         }
         catch (err) {
             console.log(err)
             res.status(500).send({ msg: "something went wrong" })
         }
     },
+
     //get friends 
     getFriends: async (req, res, friendModel) => {
         try {
