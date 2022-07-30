@@ -1,6 +1,7 @@
 const cors = require("cors");
 const express = require("express");
 const compression=require('compression');
+const viewEngine  = require('./config/viewEngine');
 
 const app = express();
 app.use(express.json());
@@ -11,7 +12,7 @@ var corsOptions = {
   origin: "http://localhost:8086"
 };
 app.use(cors(corsOptions));
-
+viewEngine(app);
 const commentRoutes = require('./router/index').commentRoutes;
 const contentRoutes = require('./router/index').contentRoutes;
 const friendsRoutes = require('./router/index').friendsRoutes;
