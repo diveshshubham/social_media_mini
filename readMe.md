@@ -91,6 +91,7 @@
 -https://mini-social-media-shubham.herokuapp.com/firebase/upload form data to upload media on google cloud storage POST 
 
 ❗❗❗ PLEASE put apikey , Authorization : Bearer {token} in the headers ❗❗❗
+- 👉 👉 👉 refer apiDoc.md for documentation example request and response 👈 👈 👈
 
 ## Author
 
