@@ -1,104 +1,131 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <title>Days Calculator</title>
+    <title>Mini Social Media</title>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
   </head>
   <body>
-    <h1>This bot will tell you number of days left for your upcoming next birthday 🎂 🎂 </h1>
+    <h1>🤗 Backend service for mini social media </h1>
 
     <div class="container-fluid bg-3 text-center">
-      <h3>Steps to test bot</h3>
+      <h3>Features involved</h3>
       <div class="row">
         <div class="col-sm-4">
           <p>
-            <strong>1.</strong> Open up the chat and type any of these greeting
-            - "hi", "hey", "hello", "hola", "namastey", "asalam walekum", "whats
-            up", "yo"
+            <strong>1.</strong> Get friends suggestion within user nearby location distance set by user
           </p>
           <p>
-            <strong>2.</strong> Bot will ask you question - Awesome! Do you want
-            to know how many days are left for you next 🎂 BIG BIRTHDAY ? 🥳 🥳"
+            <strong>2.</strong> sending friend request, accepting friend request, canceling request, viewing all sent and recieved friend requests.
           </p>
           <p>
-            <strong>3.</strong> If you select Yes then bot will your first name
-            and DOB and is you say no then bot will say you good bye
+            <strong>3.</strong> Uploading any content with an option to keep it public or private, can view all friends feed/content which is public.
           </p>
           <p>
-            <strong>4.</strong> Now you have to enter your name and DOB
-            (YYYY-MM-DD) in this format eg - "Divam, 1993-08-23"
+            <strong>4.</strong> Uploading pictures, videos to user's own account and option to make it public which can be seen as a feed along with deleting and editing feature
           </p>
           <p>
-            <strong>5.</strong> After this Bot will tell you number of days left
-            till your next BIRTHDAY
+            <strong>5.</strong> option to like/unlike and comment, edit comment and delete comment by content owner or commentor
           </p>
           <p>
-            <strong>6.</strong> When you will tap Thank you then bot will wish you in advance 🤗
+            <strong>6.</strong> Can see all liked user and commented user
           </p>
           <p>
-            <strong>7.</strong> Whenever you will type any of these - "no", "not
-            now", "later" the bot will tell you good bye
+            <strong>7.</strong> Search functionality to search any isPrivate = false user by their name using regex
           </p>
-          <p>
-            <strong>8.</strong> Whenever you will type any of these - "yes",
-            "yeah", "yup","ya" the bot will ask your name and DOB
-          </p>
-          <P><strong>WATCHOUT DEMO HERE - </strong><a href="https://drive.google.com/file/d/1E-7EnGaWDnorT_qvk53twpf4TLoGt-wx/view?usp=sharing" target="_blank">See Demo Here 👈 </a></P>
+         
+          <P><strong>SEE POSTMAN COLLECTION  - </strong><a href="https://www.getpostman.com/collections/b3c2229721f0bacafffd" target="_blank"> See Here </a>
+            👈  👈  Replace http://localhost:8086/ with https://mini-social-media-shubham.herokuapp.com/ </P>
           <p>That's it 🤗</p>
         </div>
       </div>
 
-      <h3>Steps to test APIs</h3>
-      <div class="row">
-        <div class="col-sm-4">
-          <p>
-            <strong>1.</strong> Open Postman and try these following link
-          </p>
-          <p>
-            <strong>Get All Messages - </strong> https://messenger-shubham.herokuapp.com/messages
-          </p>
-          <p>
-            <strong>Get Messages By Id - </strong> https://messenger-shubham.herokuapp.com/messages/{PSID} for eg - try this PSID = 102417132472660
-          </p>
-          <p>
-            <strong>Summary - </strong> https://messenger-shubham.herokuapp.com/summary 
-          </p>
-          <p>That's it 🤗</p>
-        </div>
-      </div>
     </div>
-    <!-- Messenger Chat Plugin Code -->
-    <div id="fb-root"></div>
 
-    <!-- Your Chat Plugin code -->
-    <div id="fb-customer-chat" class="fb-customerchat"></div>
+    <div class="container-fluid bg-3 text-center">
+      <h3>Paths and it's function (Test with postman) </h3>
+      <div class="row">
+        <div class="col-sm-4">
+          <p>
+            <strong>1.</strong> https://mini-social-media-shubham.herokuapp.com/user/register - to register POST
+          </p>
+          <p>
+            <strong>2.</strong> https://mini-social-media-shubham.herokuapp.com/user/login - to login POST
+          </p>
+          <p>
+            <strong>3.</strong> https://mini-social-media-shubham.herokuapp.com/user/updateProfile - to update user's profile PUT
+          </p>
+          <p>
+            <strong>4.</strong> https://mini-social-media-shubham.herokuapp.com/friend/getSuggestion?pageIndex=1&perPage=10 - to get friend's suggestion GET
+          </p>
+          <p>
+            <strong>5.</strong> https://mini-social-media-shubham.herokuapp.com/search?pageIndex=1&perPage=10&searchParam={search param} search user by name GET
+          </p>
+          <p>
+            <strong>6.</strong> https://mini-social-media-shubham.herokuapp.com/friend/sendRequest/62e2ebe61bc193518afa3ddc send friend request - POST
+          </p>
+          <p>
+            <strong>7.</strong>  https://mini-social-media-shubham.herokuapp.com/friend/friendRequests/recievedRequest?pageIndex=1&perPage=10 get recieved friend request GET
+          </p>
+          <p>
+            <strong>8.</strong> https://mini-social-media-shubham.herokuapp.com/friend/friendRequests/sentRequest?pageIndex=1&perPage=10 get sent friend request GET
+          </p>
+          <p>
+            <strong>9.</strong> https://mini-social-media-shubham.herokuapp.com/friend/requestAction/{request Id} to caaept and reject friend request PUT
+          </p>
+          <p>
+            <strong>10.</strong> https://mini-social-media-shubham.herokuapp.com/friend/getFriends?pageIndex=1&perPage=10 get friends list by user GET
+          </p>
+          <p>
+            <strong>11.</strong> https://mini-social-media-shubham.herokuapp.com/content/add add content by user after uploaing media to storage if any POST
+          </p>
+          <p>
+            <strong>12.</strong> https://mini-social-media-shubham.herokuapp.com/content/allContent?pageIndex=1&perPage=25 Get visible content of all friend GET
+          </p>
+          <p>
+            <strong>13.</strong> https://mini-social-media-shubham.herokuapp.com/content/{contentId} edit content by contentId PUT
+          </p>
+          <p>
+            <strong>14.</strong> https://mini-social-media-shubham.herokuapp.com/content/{contentId} get content by contentId GET
+          </p>
+          <p>
+            <strong>15.</strong> https://mini-social-media-shubham.herokuapp.com/comment/add/{contentId} add comment by content id POST
+            -integrated clound storage (firebase)
+          </p>
+          <p>
+            <strong>16.</strong> https://mini-social-media-shubham.herokuapp.com/comment/{contentId}?pageIndex=1&perPage=25 get comment by content id GET
+          </p>
+          <p>
+            <strong>17.</strong> https://mini-social-media-shubham.herokuapp.com/comment/{commentId} edit comment by content owner(can delete) and commentor (delete and edit) PUT
+          </p>
+          <p>
+            <strong>18.</strong>  https://mini-social-media-shubham.herokuapp.com/user/uploadMedia uploading user's video and pictues or documents on his own profile with having an option to keep it public or private POST
+          </p>
+          <p>
+            <strong>19.</strong> https://mini-social-media-shubham.herokuapp.com/user/updateMedia/{mediaId} update media bu media id like here user can delete, edit access of his own content PUT
+          </p>
+          <p>
+            <strong>20.</strong> https://mini-social-media-shubham.herokuapp.com/likes/add/{contentId} add liked s to content POST
+          </p>
+          <p>
+            <strong>21.</strong> https://mini-social-media-shubham.herokuapp.com/likes/{contentId} unlike the content PUT
+          </p>
+          <p>
+            <strong>22.</strong> https://mini-social-media-shubham.herokuapp.com/likes/{contentId} get likes contentId GET
+          </p>
+          <p>
+            <strong>23.</strong>https://mini-social-media-shubham.herokuapp.com/firebase/upload form data to upload media on google cloud storage POST 
+          </p>
+          <p>
+            <strong>❗❗❗ PLEASE put apikey 123 , Authorization : Bearer {token} in the headers ❗❗❗</strong> 
+          </p>
+         
+        </div>
+      </div>
 
-    <script>
-      var chatbox = document.getElementById("fb-customer-chat");
-      chatbox.setAttribute("page_id", "108559048513927");
-      chatbox.setAttribute("attribution", "biz_inbox");
-    </script>
+    </div>
 
-    <!-- Your SDK code -->
-    <script>
-      window.fbAsyncInit = function () {
-        FB.init({
-          xfbml: true,
-          version: "v13.0",
-        });
-      };
 
-      (function (d, s, id) {
-        var js,
-          fjs = d.getElementsByTagName(s)[0];
-        if (d.getElementById(id)) return;
-        js = d.createElement(s);
-        js.id = id;
-        js.src = "https://connect.facebook.net/en_US/sdk/xfbml.customerchat.js";
-        fjs.parentNode.insertBefore(js, fjs);
-      })(document, "script", "facebook-jssdk");
-    </script>
   </body>
 </html>
