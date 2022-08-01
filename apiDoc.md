@@ -159,9 +159,9 @@ This endpoint will login the user
 }
 ```
 
-Authentication Required : No
+Authentication Required : Yes
 
-This endpoint will registers a new driver
+This endpoint will update a user' profile
 
 ### HTTP Request
 
